@@ -1,0 +1,8 @@
+{% for interface in ansible_interfaces %}
+ {% if interface.startswith("eth") %}
+  {% if interface != "eth0" %} 
+auto {{ interface }}
+iface {{ interface }} inet manual
+  {% endif %}
+ {% endif %}
+{% endfor %}

@@ -1,0 +1,29 @@
+---
+- hosts: leaf:spine:exit
+  tasks:
+    - name: apply template to bring up interfaces
+      become: true
+      template:
+        src: network-interfaces.j2
+        dest: /etc/network/interfaces.d/swpX.intf
+        validate: ifup -a -s -i %s
+      notify: apply interface changes
+  handlers:
+    - name: apply interface changes
+      become: true
+      shell: ifreload -a  # noqa 305
+
+- hosts: server0*
+  tasks:
+    - name: apply template to bring up interfaces
+      become: true
+      template:
+        src: server-interfaces.j2
+        dest: /etc/network/interfaces.d/ethX.cfg
+      notify: apply interface changes
+  handlers:
+    - name: apply interface changes
+      become: true
+      service:
+        name: networking
+        state: restarted

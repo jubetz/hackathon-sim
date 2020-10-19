@@ -1,0 +1,6 @@
+{% for interface in ansible_interfaces %}
+{% if interface.startswith("swp") %} 
+auto {{ interface }}
+iface {{ interface }}
+{%  endif %}
+{% endfor %}

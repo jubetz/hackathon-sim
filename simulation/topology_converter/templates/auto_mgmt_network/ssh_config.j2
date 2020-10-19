@@ -1,0 +1,10 @@
+Host *
+ StrictHostKeyChecking no
+
+{% for device in devices -%}
+{%-   if device.ssh_user is defined and device.ssh_user != "" -%}
+Host {{device.hostname}}
+ User {{device.ssh_user}}
+
+{%   endif -%}
+{%- endfor -%}
