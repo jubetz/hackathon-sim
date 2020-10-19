@@ -32,6 +32,7 @@ spine02 ansible_host=192.168.200.22
 [host]
 server01 ansible_host=192.168.200.31
 server02 ansible_host=192.168.200.32
+server03 ansible_host=192.168.200.33
 
 
 [all:vars]

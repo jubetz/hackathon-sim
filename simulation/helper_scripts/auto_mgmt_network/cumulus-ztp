@@ -25,6 +25,11 @@ wget -O pubkey https://apps3.cumulusnetworks.com/setup/cumulus-apps-deb.pubkey
 apt-key add pubkey
 rm pubkey
 
+apt update
+apt install -qy linux-headers-4.19.0-cl-1-amd64
+apt install -qy wireguard
+
+
 reboot
 exit 0
 #CUMULUS-AUTOPROVISIONING

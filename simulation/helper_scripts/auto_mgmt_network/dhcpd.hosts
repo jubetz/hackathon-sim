@@ -26,5 +26,7 @@ host leaf02 {hardware ethernet 44:38:39:00:01:78; fixed-address 192.168.200.12; 
 host server01 {hardware ethernet 44:38:39:00:01:7e; fixed-address 192.168.200.31; option host-name "server01"; } 
 
 host server02 {hardware ethernet 44:38:39:00:01:6e; fixed-address 192.168.200.32; option host-name "server02"; } 
+
+host server03 {hardware ethernet 44:38:39:00:01:94; fixed-address 192.168.200.33; option host-name "server03"; } 
 }#End of static host group
 

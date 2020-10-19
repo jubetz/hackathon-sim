@@ -2,13 +2,14 @@ graph dc {
    "oob-mgmt-server"  [function="oob-server" mgmt_ip="192.168.200.1" os="generic/ubuntu1804" vagrant_user="cumulus" ]
    "oob-mgmt-switch"  [function="oob-switch" mgmt_ip="192.168.200.2" version="4.2.1" ]
 
-   "spine01" [function="spine" version="4.2.1" mgmt_ip="192.168.200.21"]
-   "spine02" [function="spine" version="4.2.1" mgmt_ip="192.168.200.22"]
+   "spine01" [function="spine" version="4.2.1" mgmt_ip="192.168.200.21" vagrant="swp3"]
+   "spine02" [function="spine" version="4.2.1" mgmt_ip="192.168.200.22" vagrant="swp3"]
    "leaf01" [function="leaf" version="4.2.1" mgmt_ip="192.168.200.11"]
    "leaf02" [function="leaf" version="4.2.1" mgmt_ip="192.168.200.12"]
    
    "server01" [function="host" os="generic/ubuntu1804" config="helper_scripts/extra_server_config.sh" mgmt_ip="192.168.200.31"]
    "server02" [function="host" os="generic/ubuntu1804" config="helper_scripts/extra_server_config.sh" mgmt_ip="192.168.200.32"]
+   "server03" [function="host" os="generic/ubuntu1804" config="helper_scripts/extra_server_config.sh" mgmt_ip="192.168.200.33"]
 
    "spine01":"swp1" -- "leaf01":"swp51"
    "spine02":"swp1" -- "leaf01":"swp52"
@@ -17,6 +18,7 @@ graph dc {
 
    "leaf01":"swp1" -- "server01":"eth1"
    "leaf02":"swp1" -- "server02":"eth1"
+   "leaf02":"swp2" -- "server03":"eth1"
 
    "oob-mgmt-server":"eth1" -- "oob-mgmt-switch":"swp1"
    "server01":"eth0" -- "oob-mgmt-switch":"swp2" [left_mac="44:38:39:00:01:7e"]
@@ -26,5 +28,6 @@ graph dc {
    "spine01":"eth0" -- "oob-mgmt-switch":"swp6" [left_mac="44:38:39:00:01:82"]
    "spine02":"eth0" -- "oob-mgmt-switch":"swp7" [left_mac="44:38:39:00:01:92"]
    "oob-mgmt-switch":"eth0" -- "oob-mgmt-switch":"swp8" [left_mac="44:38:39:00:01:91"]
+   "server03":"eth0" -- "oob-mgmt-switch":"swp9" [left_mac="44:38:39:00:01:94"]
 }
 
